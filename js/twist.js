@@ -106,6 +106,10 @@ function checkAns() {
                     totalScore += parseInt(parseInt(check['weight']));
                     var color = colors[totalScore];
                     document.getElementById("scoreValue").style.color = color;
+                    var bar = document.getElementById("score-bar");
+                    if (totalScore<=100){
+                        bar.style.width = totalScore+'%';
+                    }
                     // Better way to do this?
 
                     // Clear the answer rack for correct answers

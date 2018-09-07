@@ -1,32 +1,63 @@
 table {
     border-collapse: separate;
     border-spacing: 10px;
+    width: 50%;
+    margin: auto;
 }
-thead{
-    text-align: center;
+
+.intro {
+    font-weight: bold;
+    float: none;
+    font : "Impact";
+    text-indent: 100%;
+    white-space: nowrap;
+    font-size: 20px;
 }
-.mainrack{
+
+.mainrack {
     border-spacing: 10px;
-    font-family: Impact;
+    font-family: "Impact";
     font-size: 40px;
     min-width: 40px;
     text-align: center;
     background-color: teal;
     border-radius: 50%;
 }
-.inp{
+
+.inp {
     width: 100%;
     border: 2px solid blue;
     border-radius: 4px;
     font-size: 40px;
 }
-.score{
+
+.score {
     font-family: Impact;
     font-size: 20px;
 }
-.scoreValue{
+
+.scoreValue {
     color: blue;
 }
+
 .rack-storage-section{
-    
+    margin: auto;
+    width: 50%;
+    text-align: center;
+}
+.answers-section{
+    margin: auto;
+    width: 50%;
+    text-align: center;
+}
+
+.score-section {
+    text-align: center;
+    width: 100%;
+    background-color: grey;
+}
+.score-bar {
+    width: 0%;
+    height: 30px;
+    background-color: red;
 }

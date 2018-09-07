@@ -261,3 +261,6 @@
 [07-Sep-2018 01:20:12 UTC] PHP Stack trace:
 [07-Sep-2018 01:20:12 UTC] PHP   1. {main}() /home/ubuntu/workspace/php/check-if-word.php:0
 [07-Sep-2018 01:20:12 UTC] PHP   2. check_if_word() /home/ubuntu/workspace/php/check-if-word.php:67
+[07-Sep-2018 13:27:35 UTC] PHP Fatal error:  Call to undefined function racks() in Command line code on line 1
+[07-Sep-2018 13:27:35 UTC] PHP Stack trace:
+[07-Sep-2018 13:27:35 UTC] PHP   1. {main}() Command line code:0
