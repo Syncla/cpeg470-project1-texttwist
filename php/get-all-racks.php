@@ -37,7 +37,7 @@ function get_answer_scope($inputRack)
     $allRacks = get_all_racks($inputRack);
     
     // Should be of the form of the return type.
-    $results = array("totalScore" => 0);
+    $resultsFinal = array("totalScore" => 0);
     
     $totalScore = 0;
     
@@ -91,36 +91,29 @@ function get_answer_scope($inputRack)
         // The weight existing is a gurantee that the querry was succesful and returned words
         if($scoreVal)
         {
-            echo "For rack $rack there are $numWords words with point value $scoreVal so total score $scoreToAdd.\n\n";
+            echo "For rack $rack there are $numWords words with point value $scoreVal so total score $scoreToAdd.\n";
             
-            if(in_array($length, array_keys($results)))
+            
+            if(in_array($length, array_keys($resultsFinal)))
             {
-                echo "Results for length $length before: $results[$length]";
-                $results[$length] += $numWords;
-                echo "Results for length $length after: $results[$length]";
+                echo "Results for length $length before: $resultsFinal[$length]\n";
+                $resultsFinal[$length] += $numWords;
+                echo "Results for length $length after: $resultsFinal[$length]\n";
             }
             else
             {
                 
-                // Add the length as a key in our results array
+                $resultsFinal += [$length => $numWords];
+                echo "Added array element with length $length with value: $resultsFinal[$length] \n";
+                // Add the length as a key in our results array, with the first entry being the numWords just determined
             }
+            
+            $resultsFinal["totalScore"] += $scoreToAdd;
         }
         
-        
-        //$results = $results[0]['rack'];
-        
-        
-        // Set numWords to the appropriate value
-        
-        if($numWords != 0 && in_array($length, array_keys($results)))
-        {
-            // increment value by 1 for this key
-        }
-        else
-        {
-            // add key and set value to 1
-        }
     }
+    
+    print_r($resultsFinal);
 }
 
 ?>

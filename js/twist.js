@@ -109,6 +109,7 @@ function checkAns() {
                     var bar = document.getElementById("score-bar");
                     if (totalScore<=100){
                         bar.style.width = totalScore+'%';
+                        bar.style.color = color;
                     }
                     // Better way to do this?
 
