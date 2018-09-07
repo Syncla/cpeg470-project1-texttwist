@@ -1,0 +1,32 @@
+table {
+    border-collapse: separate;
+    border-spacing: 10px;
+}
+thead{
+    text-align: center;
+}
+.mainrack{
+    border-spacing: 10px;
+    font-family: Impact;
+    font-size: 40px;
+    min-width: 40px;
+    text-align: center;
+    background-color: teal;
+    border-radius: 50%;
+}
+.inp{
+    width: 100%;
+    border: 2px solid blue;
+    border-radius: 4px;
+    font-size: 40px;
+}
+.score{
+    font-family: Impact;
+    font-size: 20px;
+}
+.scoreValue{
+    color: blue;
+}
+.rack-storage-section{
+    
+}
