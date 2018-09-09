@@ -1,7 +1,7 @@
 <html>
 
 <head>
-    <script type="text/javascript" src="./js/twist.js" defer ></script>
+    <script type="text/javascript" src="./js/twist.js" defer></script>
     <link rel="stylesheet" type="text/css" href="./css/twist.css">
 </head>
 
@@ -10,43 +10,69 @@
         <p>
             Current score is <span id="scoreValue" class="scoreValue"></span>
         </p>
-        <div id = "score-bar" class="score-bar"></div>
-    </div>    
+        <hr>
+        <div id="score-bar" class="score-bar"></div>
+        <hr>
+    </div>
     <div id="answers-section" class="answers-section">
+        <p class="info">
+            Your Answers and Words Still Needed:
+        </p>
+        <table class="answers">
+            <tbody class="answers">
+                <tr>
+                    <td class="ans-cell">
+                        Length
+                    </td>
+                    <td class="ans-cell">
+                        Number
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <table class="answers">
+            <tbody id="ans-info"  >
+                <tr>
+                    <td>Loading</td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <hr>
+        
+        <table id="answers" class="answers">
+            <tbody id="completed-words">
 
-        <table id="answers">
-            <thead>
-                <span class = "intro">
-                Your Answers and Words Still Needed:
-                </span>
-            </thead>
-            <tbody>
             </tbody>
             <tfoot>
             </tfoot>
         </table>
         
-        <!-- Only for testing -->
-        <p id="answers-toString"></p>
-        
-        
+
     </div>
     <div id="rack-storage-section" class="rack-storage-section">
-        <table id="rack-storage">
+        <table id="rack-storage" class="rack">
             <thead>
-                <span class = "intro">HERE ARE YOUR dfsdfds:</span>
+                <span class="intro">HERE ARE YOUR WORDS!!!!!!!!!:</span>
             </thead>
             <tbody>
-                
+
             </tbody>
             <tfoot>
-                
+
             </tfoot>
         </table>
     </div>
     <div id="ans-section">
         <br>
-        <input type="text" id="ans" class="inp" ></input>
+        <input type="text" id="ans" class="inp"></input>
+    </div>
+    <div>
+        <hr>
+    </div>
+    <div id="action-section">
+        <button type="button" id="new-word" class="btn" onclick="newWord()">New word</button>
     </div>
 
 </body>
