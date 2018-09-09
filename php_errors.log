@@ -264,3 +264,27 @@
 [07-Sep-2018 13:27:35 UTC] PHP Fatal error:  Call to undefined function racks() in Command line code on line 1
 [07-Sep-2018 13:27:35 UTC] PHP Stack trace:
 [07-Sep-2018 13:27:35 UTC] PHP   1. {main}() Command line code:0
+[09-Sep-2018 02:38:38 UTC] PHP Warning:  require(get-all-racks.php): failed to open stream: No such file or directory in Command line code on line 1
+[09-Sep-2018 02:38:38 UTC] PHP Stack trace:
+[09-Sep-2018 02:38:38 UTC] PHP   1. {main}() Command line code:0
+[09-Sep-2018 02:38:38 UTC] PHP Fatal error:  require(): Failed opening required 'get-all-racks.php' (include_path='.:/usr/share/php:/usr/share/pear') in Command line code on line 1
+[09-Sep-2018 02:38:38 UTC] PHP Stack trace:
+[09-Sep-2018 02:38:38 UTC] PHP   1. {main}() Command line code:0
+[09-Sep-2018 03:15:25 UTC] PHP Warning:  require(get-all-racks.php): failed to open stream: No such file or directory in Command line code on line 1
+[09-Sep-2018 03:15:25 UTC] PHP Stack trace:
+[09-Sep-2018 03:15:25 UTC] PHP   1. {main}() Command line code:0
+[09-Sep-2018 03:15:25 UTC] PHP Fatal error:  require(): Failed opening required 'get-all-racks.php' (include_path='.:/usr/share/php:/usr/share/pear') in Command line code on line 1
+[09-Sep-2018 03:15:25 UTC] PHP Stack trace:
+[09-Sep-2018 03:15:25 UTC] PHP   1. {main}() Command line code:0
+[09-Sep-2018 03:15:57 UTC] PHP Warning:  require(get-all-racks.php): failed to open stream: No such file or directory in Command line code on line 1
+[09-Sep-2018 03:15:57 UTC] PHP Stack trace:
+[09-Sep-2018 03:15:57 UTC] PHP   1. {main}() Command line code:0
+[09-Sep-2018 03:15:57 UTC] PHP Fatal error:  require(): Failed opening required 'get-all-racks.php' (include_path='.:/usr/share/php:/usr/share/pear') in Command line code on line 1
+[09-Sep-2018 03:15:57 UTC] PHP Stack trace:
+[09-Sep-2018 03:15:57 UTC] PHP   1. {main}() Command line code:0
+[09-Sep-2018 03:18:09 UTC] PHP Warning:  require(get-all-racks.php): failed to open stream: No such file or directory in Command line code on line 1
+[09-Sep-2018 03:18:09 UTC] PHP Stack trace:
+[09-Sep-2018 03:18:09 UTC] PHP   1. {main}() Command line code:0
+[09-Sep-2018 03:18:09 UTC] PHP Fatal error:  require(): Failed opening required 'get-all-racks.php' (include_path='.:/usr/share/php:/usr/share/pear') in Command line code on line 1
+[09-Sep-2018 03:18:09 UTC] PHP Stack trace:
+[09-Sep-2018 03:18:09 UTC] PHP   1. {main}() Command line code:0

@@ -2,7 +2,15 @@ var mainrack = [];
 var ansrack = [];
 var completedWords = [];
 var colors = [];
+var mainrackString = "";
+
 var totalScore = 0;
+var maxScore = 0;
+
+
+
+// Needs to be dynamic?
+var unfinishedWords = [];
 
 function init() {
 
@@ -36,19 +44,9 @@ function init() {
 
     // TODO: Call PHP to get number and size of results from rack, but not words themselves
 
-    var xhr = new XMLHttpRequest();
-    xhr.onload = function() {
-        if (this.status == 200) {
-            let rack = JSON.parse(this.response);
-            //var table = document.getElementById("rack-storage").getElementsByTagName("tbody")[0];
-            for (var i = 0; i < rack.length; i++) {
-                mainrack.push(rack[i]);
-            }
-            update();
-        }
-    };
-    xhr.open("GET", "./php/random-rack.php");
-    xhr.send();
+    getRandomRack();
+    
+    
 
 
 
@@ -87,6 +85,70 @@ function gradient(startColor, endColor, steps) {
 
 }
 
+
+function getRandomRack(){
+    // Get rack of random size
+    var xhr = new XMLHttpRequest();
+    xhr.onload = function() {
+        if (this.status == 200) {
+            let rack = JSON.parse(this.response);
+            //var table = document.getElementById("rack-storage").getElementsByTagName("tbody")[0];
+
+            
+            // is this acceptable?
+            mainrackString = rack;
+            console.log(mainrackString);
+            for (var i = 0; i < rack.length; i++) {
+                mainrack.push(rack[i]);
+            }
+            // TODO: This was my solution to ensure getRandomRack finishes first before getting the answer scope
+            getAnswerScope();
+            update();
+        }
+    };
+    xhr.open("GET", "./php/random-rack.php");
+    xhr.send();
+}
+
+
+function getAnswerScope(){
+    
+    // Get number and size of results, plus max Score
+    
+    
+    
+    var xhr = new XMLHttpRequest();
+    xhr.onload = function() {
+        if (this.status == 200) {
+            console.log(this.response);
+            let scoreAndPairs = JSON.parse(this.response);
+        
+            
+            console.log(scoreAndPairs["totalScore"]);
+            maxScore = scoreAndPairs["totalScore"];
+            
+            console.log(mainrackString.length);
+            for(var answerLength = 2; answerLength <= mainrackString.length; answerLength++)
+            {
+                if(scoreAndPairs[answerLength])
+                {
+                    console.log("Answers of length " + answerLength + " exist and there are: " + scoreAndPairs[answerLength]);
+                }
+            }
+            
+            
+            
+            
+            
+            
+            update();
+        }
+    };
+    console.log(mainrackString);
+    xhr.open("GET", "./php/get-answer-scope.php?inputRack=" + mainrackString);
+    xhr.send();
+}
+
 function checkAns() {
     var ans = ansrack.join("");
     var xhr = new XMLHttpRequest();
@@ -100,7 +162,7 @@ function checkAns() {
                     // add ans to completed words
                     completedWords.push(ans);
 
-                    console.log("YAY");
+                    console.log("YAYYY");
 
                     //TODO: Handle score
                     totalScore += parseInt(parseInt(check['weight']));
@@ -161,3 +223,6 @@ function update() {
     document.querySelector("#answers-toString").innerText = completedWords.toString();
 
 }
+
+
+

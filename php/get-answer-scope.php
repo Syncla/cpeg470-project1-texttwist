@@ -21,17 +21,16 @@ function get_all_racks($myrack)
 }
 
 /*
-This function will return the number of answers that are expected.
+This function will return the number of answers that are expected. And the total score
 
 The return is of the form:
 
-{"1":"15", "3":"12", "5":"20"}
+{"totalScore": "100", 1":"15", "3":"12", "5":"20"}
 
-for 15 1 letter words, 12 3 letter words, 20 5 letter words, for example.
+for 100 points total, 15 1 letter words, 12 3 letter words, 20 5 letter words, for example.
 
 */
-// TODO :
-// Get max score possible, will do fun things with this
+
 function get_answer_scope($inputRack)
 {
     $allRacks = get_all_racks($inputRack);
@@ -91,29 +90,38 @@ function get_answer_scope($inputRack)
         // The weight existing is a gurantee that the querry was succesful and returned words
         if($scoreVal)
         {
-            echo "For rack $rack there are $numWords words with point value $scoreVal so total score $scoreToAdd.\n";
+            //echo "For rack $rack there are $numWords words with point value $scoreVal so total score $scoreToAdd.\n";
             
             
             if(in_array($length, array_keys($resultsFinal)))
             {
-                echo "Results for length $length before: $resultsFinal[$length]\n";
+                //echo "Results for length $length before: $resultsFinal[$length]\n";
                 $resultsFinal[$length] += $numWords;
-                echo "Results for length $length after: $resultsFinal[$length]\n";
+                //echo "Results for length $length after: $resultsFinal[$length]\n";
             }
             else
             {
                 
                 $resultsFinal += [$length => $numWords];
-                echo "Added array element with length $length with value: $resultsFinal[$length] \n";
-                // Add the length as a key in our results array, with the first entry being the numWords just determined
+                //echo "Added array element with length $length with value: $resultsFinal[$length] \n";
+                //Add the length as a key in our results array, with the first entry being the numWords just determined
             }
             
+            // update the total score variable
             $resultsFinal["totalScore"] += $scoreToAdd;
         }
         
     }
     
-    print_r($resultsFinal);
+    //print_r($resultsFinal);
+    
+    $resultsFinalJson = json_encode($resultsFinal);
+    
+    //print($resultsFinalJson);
+    
+    return $resultsFinalJson;
 }
+
+echo get_answer_scope($_GET["inputRack"]);
 
 ?>
