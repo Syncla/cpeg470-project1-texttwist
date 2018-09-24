@@ -6,6 +6,7 @@ var mainrackString = "";
 var scoreAndPairs = "";
 var totalScore = 0;
 var maxScore = 100;
+var newGame = 1;
 
 /*
     KEEP THINGS SEPERATE
@@ -21,16 +22,19 @@ var maxScore = 100;
 
 
 */
-// Needs to be dynamic?
-var unfinishedWords = [];
 
 function init() {
+    
+    // Add session functionality so users can resume a saved game state from last time.
+    getSessionDataIfAvailable();
+    
     // Attach the input filtering script to the text box
     capture();
 
     // TODO: Call PHP to get number and size of results from rack, but not words themselves
 
     // Get a random rack
+    
     getRandomRack();
 
     // Get colors to correspond to max scors
@@ -285,3 +289,48 @@ function cheat() {
 }
 
 
+// We can load the full status of the game from a previous session here
+function getSessionDataIfAvailable(){
+    
+    var xhr = new XMLHttpRequest();
+    xhr.onload = function() {
+        if (this.status == 200) {
+            console.log(this.response);
+            let results = JSON.parse(this.response);
+            console.log(results);
+            
+            if(results["loadingFromSession"] == 1)
+            {
+                // need to parse the results and enter here.
+                //console.log("Made it hereeeeee!!!!")
+                
+                // OK Cool, we have access to all the session values in the JSON response! So we can set them below. In each PHP script, we now
+                // have access to the equivalent seesion variables and can set them. So the server and client side essentailly have their own
+                // parallel variable storage in this case. Rather than constantly reading from the session. Not sure what is best practice, but
+                // it's cool to see how this works...
+                
+                var mainrack = [];
+                var ansrack = [];
+                var completedWords = [];
+                var colors = [];
+                var mainrackString = "";
+                var scoreAndPairs = "";
+                var totalScore = 0;
+                var maxScore = 100;
+                
+                // let the js know this is not a new game, no need to call those PHP scripts that fetch new words on startup.
+                newGame = 0;
+            }
+            else
+            {
+                //console.log("Made it thereeeee!!!!")
+            }
+            // if a truly new session, there is no need to parse the response. 
+
+            
+        }
+    };
+    xhr.open("GET", "./php/loadSession.php");
+    xhr.send();
+    
+}
