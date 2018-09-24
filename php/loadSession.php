@@ -7,7 +7,6 @@
         $_SESSION["mainrack"] = [];
         
         $_SESSION["completedWords"] = [];
-        $_SESSION["colors"] = [];
         $_SESSION["mainrackString"] = "";
         $_SESSION["scoreAndPairs"] = "";
         $_SESSION["totalScore"] = 0;

@@ -7,6 +7,7 @@
 .body{
     background-color: grey;
 }
+
 .hr {
     display: block;
     height: 1px;
@@ -76,6 +77,7 @@
 }
 
 .answers-section {
+   
     margin: auto;
     width: 50%;
     text-align: center;
@@ -91,8 +93,16 @@
     height: 30px;
     background-color: red;
 }
-
+.action {
+    text-align: center;
+    align-content:center;
+    width: 50%;
+    margin: auto;
+}
+.action-cell{
+    text-align: center;
+}
 .btn {
-    display: block;
-    margin: 0 auto;
+    margin: auto;
+    width:50%;
 }

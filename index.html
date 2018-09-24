@@ -6,24 +6,9 @@
 </head>
 
 <body onload="init()">
-    <form action="./php/login.php">
-        <div class="container">
-            <label for="uname"><b>Username</b></label>
-            <input type="text" placeholder="Enter Username" name="uname" required>
+    <div id="session" class="session">
 
-            <label for="psw"><b>Password</b></label>
-            <input type="password" placeholder="Enter Password" name="psw" required>
-
-            <button type="submit">Login</button>
-        </div>
-
-            <button type="button" class="cancelbtn">Cancel</button>
-        
-    </form>
-
-
-
-
+    </div>
 
     <div id="score-section" class="score-section">
         <p>
@@ -97,10 +82,32 @@
         <hr>
     </div>
     <div id="action-section">
-        <button type="button" id="new-word" class="btn" onclick="newWord()">New word</button>
+        <table class=action>
+            <tbody>
+                <tr>
+                    <td class="action-cell">
+                        <button type="button" id="save" class="btn" onclick="setSessionData()">Save</button>
+                    </td>
+                    <td class="action-cell">
+                        <button type="button" id="new-word" class="btn" onclick="newWord()">New word</button>
+                    </td>
+                    <td class="action-cell">
+                        <button type="button" id="load" class="btn" onclick="getSessionDataIfAvailable()">Load</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
         <hr>
         <hr>
-        <button type="button" id="cheater" class="btn" onclick="cheat()">I am a no good cheater</button>
+        <table class=action>
+            <tbody>
+                <tr>
+                    <td class="action-cell">
+                        <button type="button" id="cheater" class="btn" onclick="cheat()">I am a no good cheater</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
 
     </div>
 

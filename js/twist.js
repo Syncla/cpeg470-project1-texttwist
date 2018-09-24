@@ -24,17 +24,17 @@ var newGame = 1;
 */
 
 function init() {
-    
+
     // Add session functionality so users can resume a saved game state from last time.
-    getSessionDataIfAvailable();
-    
+    //getSessionDataIfAvailable();
+
     // Attach the input filtering script to the text box
     capture();
 
     // TODO: Call PHP to get number and size of results from rack, but not words themselves
 
     // Get a random rack
-    
+
     getRandomRack();
 
     // Get colors to correspond to max scors
@@ -93,7 +93,7 @@ function capture() {
             mainrack.splice(idx, 1);
         }
         else if (keyID == 13) {
-            console.log("Enter");
+            //console.log("Enter");
             if (ansrack.length > 0) {
                 checkAns();
             }
@@ -113,7 +113,7 @@ function getRandomRack() {
 
             // is this acceptable?
             mainrackString = rack;
-            console.log(mainrackString);
+            //console.log(mainrackString);
             for (var i = 0; i < rack.length; i++) {
                 mainrack.push(rack[i]);
             }
@@ -152,21 +152,21 @@ function getAnswerScope() {
     var xhr = new XMLHttpRequest();
     xhr.onload = function() {
         if (this.status == 200) {
-            console.log(this.response);
+            //console.log(this.response);
             scoreAndPairs = JSON.parse(this.response);
 
 
-            console.log(scoreAndPairs["totalScore"]);
+            //console.log(scoreAndPairs["totalScore"]);
             // New max score is equal to the current score plus the max from the new words, that will account for changing words
             maxScore = totalScore + scoreAndPairs["totalScore"];
 
             colors = gradient("#ff0000", "#00FF00", maxScore);
-            console.log(mainrackString.length);
+            //console.log(mainrackString.length);
 
             update();
         }
     };
-    console.log(mainrackString);
+    //console.log(mainrackString);
     xhr.open("GET", "./php/get-answer-scope.php?inputRack=" + mainrackString);
     xhr.send();
 }
@@ -186,7 +186,7 @@ function checkAns() {
                     completedWords.sort(function(a, b) {
                         return (a.length - b.length) || a.localeCompare(b); // sort by dictionary order
                     });
-                    console.log("YAYYY");
+                    //console.log("YAYYY");
 
                     //TODO: Handle score
                     totalScore += parseInt(parseInt(check['weight']));
@@ -200,13 +200,13 @@ function checkAns() {
                 }
                 else {
                     // do nothing if the word is already present (maybe notify user?)
-                    console.log("Already answered that!");
+                    //console.log("Already answered that!");
                 }
                 // We need this because the call is asynchronous it seems?
 
             }
             else {
-                console.log("NOES");
+                //console.log("NOES");
             }
             update();
         }
@@ -285,52 +285,95 @@ function cheat() {
     var win = window.open("https://wordunscrambler.me/", '_blank');
     win.focus();
     totalScore = -9001;
+    alert("I hope your happy, cheater.")
     update();
 }
 
 
 // We can load the full status of the game from a previous session here
-function getSessionDataIfAvailable(){
-    
+function getSessionDataIfAvailable() {
+
     var xhr = new XMLHttpRequest();
     xhr.onload = function() {
         if (this.status == 200) {
-            console.log(this.response);
+            //console.log(this.response);
             let results = JSON.parse(this.response);
-            console.log(results);
-            
-            if(results["loadingFromSession"] == 1)
-            {
+            //console.log(results);
+
+            if (results["loadingFromSession"] == 1) {
                 // need to parse the results and enter here.
                 //console.log("Made it hereeeeee!!!!")
-                
+
                 // OK Cool, we have access to all the session values in the JSON response! So we can set them below. In each PHP script, we now
                 // have access to the equivalent seesion variables and can set them. So the server and client side essentailly have their own
                 // parallel variable storage in this case. Rather than constantly reading from the session. Not sure what is best practice, but
                 // it's cool to see how this works...
+                mainrack = results["mainrack"];
                 
-                var mainrack = [];
-                var ansrack = [];
-                var completedWords = [];
-                var colors = [];
-                var mainrackString = "";
-                var scoreAndPairs = "";
-                var totalScore = 0;
-                var maxScore = 100;
-                
+                completedWords = results["completedWords"];
+                mainrackString = results["mainrackString"];
+                scoreAndPairs = results["scoreAndPairs"];
+                totalScore = results["totalScore"];
+                maxScore = results["maxScore"];
+
                 // let the js know this is not a new game, no need to call those PHP scripts that fetch new words on startup.
                 newGame = 0;
+                update();
             }
-            else
-            {
+            else {
                 //console.log("Made it thereeeee!!!!")
             }
             // if a truly new session, there is no need to parse the response. 
 
-            
+
         }
     };
     xhr.open("GET", "./php/loadSession.php");
     xhr.send();
+
+}
+
+function setSessionData() {
+    var len = ansrack.length;
+    for (var i = 0; i < len; i++) {
+        mainrack.push(ansrack.pop());
+    }
+    var session = {
+        name: document.cookie.match(/PHPSESSID=[^;]+/)[0].split("=")[1],
+        loadingFromSession: 0,
+        mainrack: mainrack,
+        completedWords: completedWords,
+        mainrackString: mainrackString,
+        scoreAndPairs: scoreAndPairs,
+        totalScore: totalScore,
+        maxScore: maxScore
+    };
+
+    // need to parse the results and enter here.
+    session = JSON.stringify(session);
+    //console.log(session);
     
+    
+    var xhr = new XMLHttpRequest();
+    xhr.onload = function() {
+        if (this.status == 200) {
+            //console.log(this.response);
+            let results = JSON.parse(this.response);
+            //console.log(results);
+
+            if (results["loadingFromSession"] == 1) {
+                // let the js know this is not a new game, no need to call those PHP scripts that fetch new words on startup.
+                newGame = 0;
+            }
+            else {
+                //console.log("Made it thereeeee!!!!")
+            }
+            // if a truly new session, there is no need to parse the response. 
+
+
+        }
+    };
+    xhr.open("POST", "./php/saveSession.php");
+    xhr.setRequestHeader("Content-type", "application/json")
+    xhr.send(session);
 }
