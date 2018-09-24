@@ -255,7 +255,8 @@ function update() {
 
     // Update completed words section
     // Super inefficient, but it works
-    var maxCols = 10;
+    // This is some clever code. Haha.
+    var maxCols = 15;
     var completeTable = document.getElementById("completed-words");
     // Remove all the contents of the completed words table
     completeTable.innerHTML = "";
@@ -274,3 +275,13 @@ function update() {
 
     //}
 }
+
+function cheat() {
+    alert("Cheater.")
+    var win = window.open("https://wordunscrambler.me/", '_blank');
+    win.focus();
+    totalScore = -9001;
+    update();
+}
+
+

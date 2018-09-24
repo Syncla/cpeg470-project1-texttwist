@@ -4,7 +4,17 @@
     width: 50%;
     margin: auto;
 }
-
+.body{
+    background-color: grey;
+}
+.hr {
+    display: block;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid black;
+    margin: 1em 0;
+    padding: 0; 
+}
 .answers {
     border: 1px solid black;
     width: 50%;
@@ -47,6 +57,7 @@
     border: 2px solid blue;
     border-radius: 4px;
     font-size: 40px;
+    background-color: grey;
 }
 
 .score {
@@ -73,7 +84,6 @@
 .score-section {
     text-align: center;
     width: 100%;
-    background-color: white;
 }
 
 .score-bar {

@@ -6,6 +6,25 @@
 </head>
 
 <body onload="init()">
+    <form action="./php/login.php">
+        <div class="container">
+            <label for="uname"><b>Username</b></label>
+            <input type="text" placeholder="Enter Username" name="uname" required>
+
+            <label for="psw"><b>Password</b></label>
+            <input type="password" placeholder="Enter Password" name="psw" required>
+
+            <button type="submit">Login</button>
+        </div>
+
+            <button type="button" class="cancelbtn">Cancel</button>
+        
+    </form>
+
+
+
+
+
     <div id="score-section" class="score-section">
         <p>
             Current score is <span id="scoreValue" class="scoreValue"></span>
@@ -16,7 +35,7 @@
     </div>
     <div id="answers-section" class="answers-section">
         <p class="info">
-            Your Answers and Words Still Needed:
+            Words Still Needed:
         </p>
         <table class="answers">
             <tbody class="answers">
@@ -30,17 +49,21 @@
                 </tr>
             </tbody>
         </table>
-        
+
         <table class="answers">
-            <tbody id="ans-info"  >
+            <tbody id="ans-info">
                 <tr>
                     <td>Loading</td>
                 </tr>
             </tbody>
         </table>
-        
+
         <hr>
-        
+
+        <p class="info">
+            Your Answers:
+        </p>
+
         <table id="answers" class="answers">
             <tbody id="completed-words">
 
@@ -48,13 +71,15 @@
             <tfoot>
             </tfoot>
         </table>
-        
+
+        <hr>
+
 
     </div>
     <div id="rack-storage-section" class="rack-storage-section">
         <table id="rack-storage" class="rack">
             <thead>
-                <span class="intro">HERE ARE YOUR WORDS!!!!!!!!!:</span>
+                <span class="intro">HERE ARE YOUR LETTERS:</span>
             </thead>
             <tbody>
 
@@ -73,6 +98,10 @@
     </div>
     <div id="action-section">
         <button type="button" id="new-word" class="btn" onclick="newWord()">New word</button>
+        <hr>
+        <hr>
+        <button type="button" id="cheater" class="btn" onclick="cheat()">I am a no good cheater</button>
+
     </div>
 
 </body>
